@@ -6,11 +6,13 @@ import { Button, TextField, Typography } from "@mui/material";
 const useStyles = makeStyles(() =>
   createStyles({
     login: {
-      display: "block",
-      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100wh",
+      height: "100vh",
     },
     login_box: {
-      margin: "auto",
       width: "350px",
     },
     login_box_body: {},
@@ -25,18 +27,21 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const Login = () => {
+const Login = ({ children }) => {
   const classes = useStyles();
   const [formData, setFormData] = useState({ name: "", password: "" });
+  const [loged, setLoged] = useState(false);
   const handleFormSubmit = (e) => {
-    loginPost(formData);
-    console.log(formData);
+    loginPost(formData).then((res) => {
+      // console.log(res);
+      res.statusCode === 200 && setLoged(true);
+    });
   };
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  return (
+  return !loged ? (
     <div className={classes.login}>
       <div className={classes.login_box}>
         <div className="login-box-header">
@@ -75,6 +80,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+  ) : (
+    children
   );
 };
 

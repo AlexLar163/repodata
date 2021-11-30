@@ -1,7 +1,7 @@
 const url = "http://45.177.127.103:1337/empleados/login";
 
 const loginPost = (body) => {
-  fetch(url, {
+  return fetch(url, {
     method: "POST",
     body: JSON.stringify(body),
 
@@ -10,9 +10,7 @@ const loginPost = (body) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });
+    .then((data) => data);
 };
 
 export default loginPost;
