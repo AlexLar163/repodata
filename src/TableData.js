@@ -27,7 +27,7 @@ const TableData = (data) => {
   const rows = data.data.map((item) => {
     return createData(
       item.id,
-      item.ident,
+      item.identificacion,
       item.nombres,
       item.provincia,
       item.ciudad,

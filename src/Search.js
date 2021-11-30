@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createStyles, makeStyles } from "@mui/styles";
-import { MenuItem, Select, TextField } from "@mui/material";
+import { Button, MenuItem, Select, TextField } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import FileToExcel from "./FileToExcel";
 
 // Components
 import TableData from "./TableData";
@@ -49,8 +50,8 @@ const useStyles = makeStyles(() =>
       margin: "15px auto",
       backgroundColor: "#e8eaf6",
     },
-    gridData: {
-      display: "flex",
+    button: {
+      padding: "15px",
     },
   })
 );
@@ -150,9 +151,8 @@ const Search = () => {
             })}
           </Select>
         </div>
-        <div className={classes.gridData}>
-          <TableData data={searchDataSucursal}></TableData>;
-        </div>
+        <TableData data={searchDataSucursal}></TableData>;
+        <FileToExcel data={searchDataSucursal}/>
       </main>
     </>
   );
